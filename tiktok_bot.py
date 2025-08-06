@@ -41,23 +41,23 @@ def get_advanced_user_info(username):
     except Exception as e:
         return f"❌ **حدث خطأ غير متوقع:**\n`{e}`"
 
-# --- أوامر البوت (تبقى كما هي) ---
+# --- أوامر البوت ---
 async def start_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text("أهلاً بك في بوت كشف معلومات تيك توك الاحترافي. أرسل لي أي يوزر.")
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     username = update.message.text.replace('@', '').strip()
     processing_message = await update.message.reply_text("⏳ جاري البحث عن معلومات متقدمة...")
-    
+
     result_text = get_advanced_user_info(username)
     
     await processing_message.edit_text(text=result_text, parse_mode='Markdown')
 
-# --- الدالة الرئيسية لتشغيل البوت (تبقى كما هي) ---
+# --- الدالة الرئيسية لتشغيل البوت ---
 def main():
-    BOT_TOKEN = os.environ.get("8406319998:AAHc_xGZGWeFBdVa0SHHPmUFTOgnMicDYCA")
+    BOT_TOKEN = os.environ.get("BOT_TOKEN")  # تأكد من ضبط متغير البيئة BOT_TOKEN بقيمة التوكن
     if not BOT_TOKEN:
-        print("خطأ: لم يتم العثور على توكن البوت.")
+        print("خطأ: لم يتم العثور على توكن البوت. تأكد من ضبط متغير البيئة BOT_TOKEN")
         return
 
     print("--- بدء تشغيل بوت تيك توك الاحترافي ---")
